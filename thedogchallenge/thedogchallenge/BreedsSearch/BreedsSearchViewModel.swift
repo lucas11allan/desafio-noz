@@ -1,5 +1,5 @@
 //
-//  DogDetailModel.swift
+//  BreedsSearchViewModel.swift
 //  thedogchallenge
 //
 //  Created by Lucas Allan Almeida Oliveira on 11/08/22.
