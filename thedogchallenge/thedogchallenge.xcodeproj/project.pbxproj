@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		9B483EDA28A576010088EC9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B483ED928A576010088EC9D /* AppDelegate.swift */; };
 		9B483EDC28A576010088EC9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B483EDB28A576010088EC9D /* SceneDelegate.swift */; };
-		9B483EDE28A576010088EC9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B483EDD28A576010088EC9D /* ViewController.swift */; };
-		9B483EE128A576010088EC9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B483EDF28A576010088EC9D /* Main.storyboard */; };
 		9B483EE428A576010088EC9D /* thedogchallenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B483EE228A576010088EC9D /* thedogchallenge.xcdatamodeld */; };
 		9B483EE628A576020088EC9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B483EE528A576020088EC9D /* Assets.xcassets */; };
 		9B483EE928A576020088EC9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B483EE728A576020088EC9D /* LaunchScreen.storyboard */; };
@@ -54,8 +52,6 @@
 		9B483ED628A576010088EC9D /* thedogchallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thedogchallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B483ED928A576010088EC9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B483EDB28A576010088EC9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9B483EDD28A576010088EC9D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9B483EE028A576010088EC9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B483EE328A576010088EC9D /* thedogchallenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = thedogchallenge.xcdatamodel; sourceTree = "<group>"; };
 		9B483EE528A576020088EC9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B483EE828A576020088EC9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -135,8 +131,6 @@
 				9B483F1428A579C70088EC9D /* BreedDetail */,
 				9B483F0D28A5780E0088EC9D /* BreedsList */,
 				9B483F0C28A578050088EC9D /* Services */,
-				9B483EDD28A576010088EC9D /* ViewController.swift */,
-				9B483EDF28A576010088EC9D /* Main.storyboard */,
 				9B483EE528A576020088EC9D /* Assets.xcassets */,
 				9B483EE728A576020088EC9D /* LaunchScreen.storyboard */,
 				9B483EEA28A576020088EC9D /* Info.plist */,
@@ -331,7 +325,6 @@
 			files = (
 				9B483EE928A576020088EC9D /* LaunchScreen.storyboard in Resources */,
 				9B483EE628A576020088EC9D /* Assets.xcassets in Resources */,
-				9B483EE128A576010088EC9D /* Main.storyboard in Resources */,
 				9B8679CC28A6AA40006F3A5C /* BreedsListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +351,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B483F1A28A57A150088EC9D /* BreedDetailViewModel.swift in Sources */,
-				9B483EDE28A576010088EC9D /* ViewController.swift in Sources */,
 				9B483F2228A5A0700088EC9D /* BreedsSearchModel.swift in Sources */,
 				9B483F2428A5A0820088EC9D /* BreedsSearchViewController.swift in Sources */,
 				9B483EDA28A576010088EC9D /* AppDelegate.swift in Sources */,
@@ -409,14 +401,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9B483EDF28A576010088EC9D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9B483EE028A576010088EC9D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9B483EE728A576020088EC9D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
