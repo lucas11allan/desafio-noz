@@ -8,6 +8,9 @@
 import Foundation
 import RxSwift
 
+enum Steps {
+    
+}
 class BreedsListViewModel: ObservableObject {
     private let service: DogBreedsApi
     
@@ -17,11 +20,15 @@ class BreedsListViewModel: ObservableObject {
 
     var error: String = ""
     
-    @Published var images = [BreedImage]()
-    @Published var isLoading: Bool = false
+    var isLoading: Bool = false
     
-    init(service: DogBreedsApi) {
+    let images = BehaviorSubject<[BreedImage]>(value: [])
+    
+    let coordinator: AppCoordinator
+    
+    init(service: DogBreedsApi, coordinator: AppCoordinator) {
         self.service = service
+        self.coordinator = coordinator
     }
     
     func getImages(_ page: Int = 1) {
@@ -29,7 +36,7 @@ class BreedsListViewModel: ObservableObject {
             switch result {
             case .success(let data):
                 self?.isLoading = false
-                self?.images = data
+                self?.images.onNext(data)
             case .error(let erro):
                 self?.error = erro.localizedDescription
                 debugPrint("Um erro aconteceu: \(String(describing: self?.error))")
@@ -38,6 +45,10 @@ class BreedsListViewModel: ObservableObject {
                 debugPrint("Um erro aconteceu: \(String(describing: self?.error))")
             }
         }
+    }
+    
+    func openDetails(breed: BreedDetail) {
+        
     }
 }
 
