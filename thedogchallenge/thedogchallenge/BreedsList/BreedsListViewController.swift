@@ -60,7 +60,7 @@ class BreedsListViewController: UIViewController {
     }
 
     @objc func search() {
-        
+        viewModel.goToSearch()
     }
     
     private func setUpTableView() {

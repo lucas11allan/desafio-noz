@@ -31,7 +31,7 @@ class BreedsListViewModel: ObservableObject {
     func getImages(_ page: Int = 1) {
         service.fetchImages(page: page) { [weak self] result in
             switch result {
-            case .success(let data):
+            case .successImage(let data):
                 self?.isLoading = false
                 self?.images.onNext(data)
             case .error(let erro):
@@ -45,8 +45,11 @@ class BreedsListViewModel: ObservableObject {
     }
     
     func openDetails(breed: BreedImage) {
-        guard let id = breed.id else { return }
         coordinator.openDetails(breed: breed)
+    }
+    
+    func goToSearch() {
+        coordinator.openSearchScreen()
     }
 }
 

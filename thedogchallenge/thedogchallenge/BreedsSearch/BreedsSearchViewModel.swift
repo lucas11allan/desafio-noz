@@ -6,3 +6,45 @@
 //
 
 import Foundation
+import RxSwift
+
+class BreedsSearchViewModel {
+    private let service: DogBreedsApi
+    
+    var currentPage: Int = 0
+
+    var hasEnded: Bool = false
+
+    var error: String = ""
+    
+    var isLoading: Bool = false
+    
+    let breeds = BehaviorSubject<[Breed]>(value: [])
+    
+    let coordinator: AppCoordinator
+    
+    init(service: DogBreedsApi, coordinator: AppCoordinator) {
+        self.service = service
+        self.coordinator = coordinator
+    }
+    
+    func searchBreeds(_ page: Int = 1) {
+        service.fetchSearchBreeds(query: "bull", page: page) { [weak self] result in
+            switch result {
+            case .successSearch(let data):
+                self?.isLoading = false
+                self?.breeds.onNext(data)
+            case .error(let erro):
+                self?.error = erro.localizedDescription
+                debugPrint("Um erro aconteceu: \(String(describing: self?.error))")
+            default:
+                self?.error = "No content"
+                debugPrint("Um erro aconteceu: \(String(describing: self?.error))")
+            }
+        }
+    }
+    
+    func openDetails(breed: BreedImage) {
+        coordinator.openDetails(breed: breed)
+    }
+}

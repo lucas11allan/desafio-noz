@@ -6,3 +6,15 @@
 //
 
 import Foundation
+import UIKit
+class BreedsSearchViewController: UIViewController {
+    var viewModel: BreedsSearchViewModel?
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel?.searchBreeds()
+    }
+    
+}

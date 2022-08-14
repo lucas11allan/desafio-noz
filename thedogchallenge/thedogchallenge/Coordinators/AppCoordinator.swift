@@ -35,10 +35,10 @@ class AppCoordinator: BaseCoordinator {
     }
     
     func openSearchScreen() {
-        let viewModel = BreedDetailViewModel(service: dogService, coordinator: self, breed: breed)
-        let detailViewController = BreedDetailViewController()
-        detailViewController.viewModel = viewModel
+        let viewModel = BreedsSearchViewModel(service: dogService, coordinator: self)
+        let searchViewController = BreedsSearchViewController()
+        searchViewController.viewModel = viewModel
         
-        self.navigationController.pushViewController(detailViewController, animated: true)
+        self.navigationController.pushViewController(searchViewController, animated: true)
     }
 }

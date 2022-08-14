@@ -9,16 +9,18 @@ import Foundation
 import Alamofire
 
 enum ServiceReturn {
-    case success(Service.Images)
+    case successImage(Service.Images)
+    case successSearch(Service.Search)
     case noContent
     case error(Error)
 }
 
 protocol Service {
     typealias Images = [BreedImage]
-    typealias ImagesHandler = (ServiceReturn) -> Void
+    typealias Search = [Breed]
+    typealias Handler = (ServiceReturn) -> Void
 
-    func fetchImages(page: Int, completionHandler: @escaping ImagesHandler)
+    func fetchImages(page: Int, completionHandler: @escaping Handler)
 }
 
 class DogBreedsApi: Service {
@@ -29,7 +31,7 @@ class DogBreedsApi: Service {
     
     func fetchImages (
         page: Int = 1,
-        completionHandler: @escaping ImagesHandler
+        completionHandler: @escaping Handler
     ) {
         let params = ["page": page] as [String : Any]
 
@@ -38,7 +40,6 @@ class DogBreedsApi: Service {
             parameters: params,
             type: Images.self
         ) { response in
-            print(response)
             if let error = response.error {
                 completionHandler(.error(error))
                 return
@@ -49,7 +50,33 @@ class DogBreedsApi: Service {
                 return
             }
 
-            completionHandler(.success(data))
+            completionHandler(.successImage(data))
+        }
+    }
+    
+    func fetchSearchBreeds (
+        query: String,
+        page: Int = 1,
+        completionHandler: @escaping Handler
+    ) {
+        let params = ["page": page, "q": query] as [String : Any]
+
+        fetchApi(
+            endpoint: "/breeds/search",
+            parameters: params,
+            type: Search.self
+        ) { response in
+            if let error = response.error {
+                completionHandler(.error(error))
+                return
+            }
+
+            guard let data = response.value else {
+                completionHandler(.noContent)
+                return
+            }
+
+            completionHandler(.successSearch(data))
         }
     }
 
