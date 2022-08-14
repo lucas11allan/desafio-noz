@@ -15,29 +15,30 @@ enum ServiceReturn {
 }
 
 protocol Service {
-    typealias Images = BreedsImages
-    typealias EventsHandler = (ServiceReturn) -> Void
+    typealias Images = [BreedImage]
+    typealias ImagesHandler = (ServiceReturn) -> Void
 
-    func fetchImages(page: Int, completionHandler: @escaping EventsHandler)
+    func fetchImages(page: Int, completionHandler: @escaping ImagesHandler)
 }
 
 class DogBreedsApi: Service {
     private let limit = 20
-    private let baseUrl = "https://api.thecatapi.com/v1"
+    private let baseUrl = "https://api.thedogapi.com/v1"
     private let publicKey = "api_key=20febf79-3164-47bf-a653-40abca91c352"
     private let jsonDecoder: JSONDecoder  = JSONDecoder()
     
     func fetchImages (
         page: Int = 1,
-        completionHandler: @escaping EventsHandler
+        completionHandler: @escaping ImagesHandler
     ) {
-        let params = ["page": page, "order": "ASC"] as [String : Any]
+        let params = ["page": page] as [String : Any]
 
         fetchApi(
             endpoint: "/images/search",
             parameters: params,
             type: Images.self
         ) { response in
+            print(response)
             if let error = response.error {
                 completionHandler(.error(error))
                 return
@@ -60,14 +61,12 @@ class DogBreedsApi: Service {
     ) where T: Decodable {
         var parameters = parameters
         
-
         parameters["limit"] = 20
-
-        AF.request("\(baseUrl)\(endpoint)", parameters: parameters)
+        let httpHeaders = ["x-api-key": publicKey] as HTTPHeaders
+        
+        AF.request("\(baseUrl)\(endpoint)", parameters: parameters, headers:  httpHeaders)
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: type,
-                               decoder: jsonDecoder,
-                               completionHandler: completionHandler)
+            .responseDecodable (of: type, completionHandler: completionHandler)
     }
 }
 

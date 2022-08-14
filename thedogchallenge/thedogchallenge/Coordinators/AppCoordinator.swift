@@ -20,8 +20,8 @@ class AppCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        //let viewModel = BreedsListViewModel(dogService: DogBreedsApi)
-        let breedsListViewController = BreedsListViewController(nibName: BreedsListViewController.identifier, bundle: nil)
+        let viewModel = BreedsListViewModel(service: dogService)
+        let breedsListViewController = BreedsListViewController(viewModel: viewModel)
 
         self.navigationController.viewControllers = [breedsListViewController]
     }
