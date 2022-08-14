@@ -37,6 +37,7 @@
 		9B89EFED28A95E4F001840A8 /* BreedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B89EFEC28A95E4F001840A8 /* BreedTableViewCell.xib */; };
 		9B89EFEF28A95E6A001840A8 /* BreedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89EFEE28A95E6A001840A8 /* BreedTableViewCell.swift */; };
 		9B89EFF228A97E1F001840A8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9B89EFF128A97E1F001840A8 /* Kingfisher */; };
+		9B89EFF828A990C2001840A8 /* BreedDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B89EFF728A990C2001840A8 /* BreedDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		9B89EFE928A95B7F001840A8 /* BreedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreedCollectionViewCell.xib; sourceTree = "<group>"; };
 		9B89EFEC28A95E4F001840A8 /* BreedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreedTableViewCell.xib; sourceTree = "<group>"; };
 		9B89EFEE28A95E6A001840A8 /* BreedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedTableViewCell.swift; sourceTree = "<group>"; };
+		9B89EFF728A990C2001840A8 /* BreedDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreedDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				9B483F1528A579E20088EC9D /* BreedDetailModel.swift */,
 				9B483F1728A579F90088EC9D /* BreedDetailViewController.swift */,
 				9B483F1928A57A150088EC9D /* BreedDetailViewModel.swift */,
+				9B89EFF728A990C2001840A8 /* BreedDetailViewController.xib */,
 			);
 			path = BreedDetail;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 			files = (
 				9B483EE928A576020088EC9D /* LaunchScreen.storyboard in Resources */,
 				9B89EFEA28A95B7F001840A8 /* BreedCollectionViewCell.xib in Resources */,
+				9B89EFF828A990C2001840A8 /* BreedDetailViewController.xib in Resources */,
 				9B89EFED28A95E4F001840A8 /* BreedTableViewCell.xib in Resources */,
 				9B483EE628A576020088EC9D /* Assets.xcassets in Resources */,
 				9B8679CC28A6AA40006F3A5C /* BreedsListViewController.xib in Resources */,

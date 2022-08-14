@@ -39,7 +39,6 @@ class BreedTableViewCell: UITableViewCell {
     
     func downloadImage(url: String) {
         let url = URL(string: url)
-        // this downloads the image asynchronously if it's not cached yet
         breedImage.kf.setImage(with: url)
     }
 }

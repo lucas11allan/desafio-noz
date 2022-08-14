@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+class BreedDetailViewModel {
+    private let service: DogBreedsApi
+    private let coordinator: AppCoordinator
+    var breed: BreedImage
+    
+    init(service: DogBreedsApi, coordinator: AppCoordinator, breed: BreedImage) {
+        self.service = service
+        self.coordinator = coordinator
+        self.breed = breed
+    }
+    
+}

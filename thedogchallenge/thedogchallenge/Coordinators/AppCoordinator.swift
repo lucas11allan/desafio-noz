@@ -20,9 +20,25 @@ class AppCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        let viewModel = BreedsListViewModel(service: dogService)
+        let viewModel = BreedsListViewModel(service: dogService, coordinator: self)
         let breedsListViewController = BreedsListViewController(viewModel: viewModel)
 
         self.navigationController.viewControllers = [breedsListViewController]
+    }
+    
+    func openDetails(breed: BreedImage) {
+        let viewModel = BreedDetailViewModel(service: dogService, coordinator: self, breed: breed)
+        let detailViewController = BreedDetailViewController()
+        detailViewController.viewModel = viewModel
+        
+        self.navigationController.pushViewController(detailViewController, animated: true)
+    }
+    
+    func openSearchScreen() {
+        let viewModel = BreedDetailViewModel(service: dogService, coordinator: self, breed: breed)
+        let detailViewController = BreedDetailViewController()
+        detailViewController.viewModel = viewModel
+        
+        self.navigationController.pushViewController(detailViewController, animated: true)
     }
 }

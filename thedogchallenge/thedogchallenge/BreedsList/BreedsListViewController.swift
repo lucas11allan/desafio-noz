@@ -60,28 +60,25 @@ class BreedsListViewController: UIViewController {
     }
 
     @objc func search() {
-        //searchBar.isHidden = searchBar.isHidden ? false : true
+        
     }
     
     private func setUpTableView() {
         tableView.register(UINib(nibName: BreedTableViewCell.identifier, bundle: nil),
-                              forCellReuseIdentifier: BreedTableViewCell.identifier)
+                           forCellReuseIdentifier: BreedTableViewCell.identifier)
         
         viewModel.images
             .bind(to: tableView.rx.items(
                 cellIdentifier: BreedTableViewCell.identifier, cellType: BreedTableViewCell.self)) { idx, breed, cell in
                     cell.setData(breed: breed)
-                    //cel.updateColor(type: idx % 2 == 0 ? .black : .white)
-                    //cel.repositoryLabel.text = repo.name
-                    
-            }
-            .disposed(by: disposeBag)
-
-        tableView.rx.modelSelected(BreedDetail.self)
+                }
+                .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(BreedImage.self)
             .subscribe { breed in
                 self.viewModel.openDetails(breed: breed)
             }
-          .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
 }

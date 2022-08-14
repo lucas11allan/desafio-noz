@@ -8,9 +8,6 @@
 import Foundation
 import RxSwift
 
-enum Steps {
-    
-}
 class BreedsListViewModel: ObservableObject {
     private let service: DogBreedsApi
     
@@ -47,8 +44,9 @@ class BreedsListViewModel: ObservableObject {
         }
     }
     
-    func openDetails(breed: BreedDetail) {
-        
+    func openDetails(breed: BreedImage) {
+        guard let id = breed.id else { return }
+        coordinator.openDetails(breed: breed)
     }
 }
 
