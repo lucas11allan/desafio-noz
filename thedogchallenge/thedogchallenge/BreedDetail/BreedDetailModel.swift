@@ -19,7 +19,7 @@ struct DogDetailModel {
     init(breed: Breed, imageUrl: String) {
         self.name = breed.name ?? "--"
         self.category = breed.breed_group ?? "--"
-        self.origin = breed.breed_for ?? "--"
+        self.origin = breed.life_span ?? "--"
         self.temperament = breed.temperament ?? "--"
         self.imageUrl = imageUrl
     }
@@ -28,7 +28,7 @@ struct DogDetailModel {
         let breedInfo = breed.breeds?[0]
         self.name = breedInfo?.name ?? "--"
         self.category = breedInfo?.breed_group ?? "--"
-        self.origin = breedInfo?.breed_for ?? "--"
+        self.origin = breedInfo?.life_span ?? "--"
         self.temperament = breedInfo?.temperament ?? "--"
         self.imageUrl = breed.url ?? "--"
     }

@@ -11,9 +11,9 @@ import UIKit
 class AppCoordinator: BaseCoordinator {
 
     let window: UIWindow
-    let dogService: DogBreedsApi
+    let dogService: ServiceDogProtocol
 
-    init(navigationController: UINavigationController, window: UIWindow, dogService: DogBreedsApi) {
+    init(navigationController: UINavigationController, window: UIWindow, dogService: ServiceDogProtocol) {
         self.window = window
         self.dogService = dogService
         super.init(navigationController: navigationController)

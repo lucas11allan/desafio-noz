@@ -8,28 +8,34 @@
 import Foundation
 import RxSwift
 
-class BreedsListViewModel: ObservableObject {
-    private let service: DogBreedsApi
+protocol BreedsListViewModelProtocol {
+    var service: ServiceDogProtocol { get }
+    var images: BehaviorSubject<[BreedImage]> { get }
+    var coordinator: AppCoordinator { get }
     
-    var currentPage: Int = 0
+    func getImages(order: String)
+    func openDetails(breed: BreedImage)
+    func goToSearch()
+}
 
-    var hasEnded: Bool = false
-
-    var error: String = ""
+class BreedsListViewModel: BreedsListViewModelProtocol {
+    internal let service: ServiceDogProtocol
     
-    var isLoading: Bool = false
-    
+    private var currentPage: Int = 0
+    private var hasEnded: Bool = false
+    private var error: String = ""
+    private var isLoading: Bool = false
     let images = BehaviorSubject<[BreedImage]>(value: [])
     
     let coordinator: AppCoordinator
     
-    init(service: DogBreedsApi, coordinator: AppCoordinator) {
+    init(service: ServiceDogProtocol, coordinator: AppCoordinator) {
         self.service = service
         self.coordinator = coordinator
     }
     
-    func getImages(_ page: Int = 1) {
-        service.fetchImages(page: page) { [weak self] result in
+    func getImages(order: String = "RANDOM") {
+        service.fetchImages(page: currentPage, order: order.uppercased()) { [weak self] result in
             switch result {
             case .successImage(let data):
                 self?.isLoading = false
@@ -45,7 +51,19 @@ class BreedsListViewModel: ObservableObject {
     }
     
     func openDetails(breed: BreedImage) {
-        coordinator.openDetails(breed: breed)
+        guard let id = breed.id else { return }
+        service.fetchImage(id: id) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.coordinator.openDetails(breed: data)
+            case .error(let erro):
+                self?.error = erro.localizedDescription
+                debugPrint("Um erro aconteceu: \(String(describing: self?.error))")
+            default:
+                self?.error = "No content"
+                debugPrint("Um erro aconteceu: \(String(describing: self?.error))")
+            }
+        }
     }
     
     func goToSearch() {

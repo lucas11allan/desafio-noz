@@ -7,12 +7,16 @@
 
 import Foundation
 
-class BreedDetailViewModel {
-    private let service: DogBreedsApi
+protocol BreedDetailViewModelProtocol {
+    var breedDetail: DogDetailModel { get }
+}
+
+class BreedDetailViewModel: BreedDetailViewModelProtocol {
+    private let service: ServiceDogProtocol
     private let coordinator: AppCoordinator
     var breedDetail: DogDetailModel
     
-    init(service: DogBreedsApi, coordinator: AppCoordinator, breed: BreedImage) {
+    init(service: ServiceDogProtocol, coordinator: AppCoordinator, breed: BreedImage) {
         self.service = service
         self.coordinator = coordinator
         self.breedDetail = DogDetailModel(breed: breed)

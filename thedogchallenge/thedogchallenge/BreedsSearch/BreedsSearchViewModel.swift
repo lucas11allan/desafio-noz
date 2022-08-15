@@ -7,29 +7,31 @@
 
 import Foundation
 import RxSwift
-
-class BreedsSearchViewModel {
-    private let service: DogBreedsApi
+protocol BreedsSearchViewModelProtocol {
+    var service: ServiceDogProtocol { get }
+    var breeds: BehaviorSubject<[Breed]> { get }
+    var coordinator: AppCoordinator { get }
     
-    var currentPage: Int = 0
+    func searchBreeds(query: String)
+    func openDetails(breed: Breed)
+}
 
-    var hasEnded: Bool = false
-
-    var error: String = ""
-    
-    var isLoading: Bool = false
-    
+class BreedsSearchViewModel: BreedsSearchViewModelProtocol {
+    internal let service: ServiceDogProtocol
+    private var currentPage: Int = 0
+    private var hasEnded: Bool = false
+    private var error: String = ""
+    private var isLoading: Bool = false
     let breeds = BehaviorSubject<[Breed]>(value: [])
+    internal let coordinator: AppCoordinator
     
-    let coordinator: AppCoordinator
-    
-    init(service: DogBreedsApi, coordinator: AppCoordinator) {
+    init(service: ServiceDogProtocol, coordinator: AppCoordinator) {
         self.service = service
         self.coordinator = coordinator
     }
     
-    func searchBreeds(_ page: Int = 1) {
-        service.fetchSearchBreeds(query: "bull", page: page) { [weak self] result in
+    func searchBreeds(query: String) {
+        service.fetchSearchBreeds(query: query, page: currentPage) { [weak self] result in
             switch result {
             case .successSearch(let data):
                 self?.isLoading = false
@@ -45,7 +47,8 @@ class BreedsSearchViewModel {
     }
     
     func openDetails(breed: Breed) {
-        service.fetchImage(id: "rVXxoWhCR") { [weak self] result in
+        guard let id = breed.reference_image_id else { return }
+        service.fetchImage(id: id) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.coordinator.openDetails(breed: data)

@@ -21,7 +21,7 @@ class BreedDetailViewController: UIViewController {
     @IBOutlet weak var orignLabel: UILabel!
     @IBOutlet weak var temperamentLabel: UILabel!
     
-    var viewModel: BreedDetailViewModel? = nil
+    var viewModel: BreedDetailViewModelProtocol? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +29,16 @@ class BreedDetailViewController: UIViewController {
         setData(viewModel)
     }
     
-    private func setData(_ viewModel: BreedDetailViewModel) {
+    private func setData(_ viewModel: BreedDetailViewModelProtocol) {
         let breedInfo = viewModel.breedDetail
         nameLabel.text = breedInfo.name
         categoryLabel.text = breedInfo.category
         orignLabel.text = breedInfo.origin
         temperamentLabel.text = breedInfo.temperament
+        temperamentLabel.sizeToFit()
 
         let url = URL(string: breedInfo.imageUrl)
+        dogImageView.kf.indicatorType = .activity
         dogImageView.kf.setImage(with: url)
     }
 }

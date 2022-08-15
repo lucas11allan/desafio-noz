@@ -10,16 +10,26 @@ import UIKit
 import RxSwift
 
 class BreedsSearchViewController: UIViewController {
-    var viewModel: BreedsSearchViewModel?
+    var viewModel: BreedsSearchViewModelProtocol?
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchBar: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel?.searchBreeds()
         setUpTableView()
+        setupSearchBar()
+    }
+    
+    private func setupSearchBar() {
+        searchBar.rx.text
+           .orEmpty
+           .subscribe(onNext: {query in
+               self.viewModel?.searchBreeds(query: query)
+           })
+           .disposed(by: disposeBag)
     }
     
     private func setUpTableView() {

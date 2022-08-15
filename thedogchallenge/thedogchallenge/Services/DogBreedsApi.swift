@@ -9,33 +9,35 @@ import Foundation
 import Alamofire
 
 enum ServiceReturn {
-    case success(Service.Image)
-    case successImage(Service.Images)
-    case successSearch(Service.Search)
+    case success(ServiceDogProtocol.Image)
+    case successImage(ServiceDogProtocol.Images)
+    case successSearch(ServiceDogProtocol.Search)
     case noContent
     case error(Error)
 }
 
-protocol Service {
+protocol ServiceDogProtocol {
     typealias Image = BreedImage
     typealias Images = [BreedImage]
     typealias Search = [Breed]
     typealias Handler = (ServiceReturn) -> Void
 
-    func fetchImages(page: Int, completionHandler: @escaping Handler)
+    func fetchImages(page: Int, order: String, completionHandler: @escaping Handler)
+    func fetchImage(id: String, completionHandler: @escaping Handler)
+    func fetchSearchBreeds(query: String, page: Int, completionHandler: @escaping Handler)
 }
 
-class DogBreedsApi: Service {
+class DogBreedsApi: ServiceDogProtocol {
     private let limit = 20
     private let baseUrl = "https://api.thedogapi.com/v1"
     private let publicKey = "api_key=20febf79-3164-47bf-a653-40abca91c352"
-    private let jsonDecoder: JSONDecoder  = JSONDecoder()
     
     func fetchImages (
-        page: Int = 1,
+        page: Int = 0,
+        order: String,
         completionHandler: @escaping Handler
     ) {
-        let params = ["page": page, "limit": 20] as [String : Any]
+        let params = ["page": page, "limit": 20, "order": order] as [String : Any]
 
         fetchApi(
             endpoint: "/images/search",
@@ -77,7 +79,7 @@ class DogBreedsApi: Service {
     
     func fetchSearchBreeds (
         query: String,
-        page: Int = 1,
+        page: Int = 0,
         completionHandler: @escaping Handler
     ) {
         let params = ["page": page, "q": query] as [String : Any]
@@ -101,7 +103,7 @@ class DogBreedsApi: Service {
         }
     }
 
-    func fetchApi<T>(
+    private func fetchApi<T>(
         endpoint: String,
         parameters: [String: Any] = [:],
         type: T.Type = T.self,

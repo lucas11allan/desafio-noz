@@ -13,14 +13,14 @@ import RxCocoa
 class BreedsListViewController: UIViewController {
     static let identifier = "BreedsListViewController"
     private let disposeBag = DisposeBag()
-    
-    let viewModel: BreedsListViewModel
-    
+    private let order = [0: "RANDOM", 1: "ASC", 2: "DESC"]
+    let viewModel: BreedsListViewModelProtocol
     private var isListView = true
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    init(viewModel: BreedsListViewModel) {
+    init(viewModel: BreedsListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -32,31 +32,26 @@ class BreedsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.getImages()
         setupNavigationBar()
         setUpTableView()
+        
+        segmentedControl.rx.selectedSegmentIndex.subscribe (onNext: { param in
+            guard let order = self.order[param] else { return }
+            self.viewModel.getImages(order: order)
+        })
+        .disposed(by: disposeBag)
     }
     
     func setupNavigationBar() {
         let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self,
                                                             action: #selector(search))
-        let filterButton = UIBarButtonItem(barButtonSystemItem: .add, target: self,
-                                                            action: #selector(openFilter))
-        let backButton = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: nil)
 
-        /*searchButton.tintColor = .white
-        filterButton.tintColor = .white
-        backButton.tintColor = .white*/
+        /*searchButton.tintColor = .white*/
 
-        navigationItem.rightBarButtonItems = [filterButton, searchButton]
-        navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItems = [searchButton]
         navigationItem.title = "The Dogs"
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blue]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
-    
-    @objc func openFilter() {
-        isListView = !isListView
     }
 
     @objc func search() {
