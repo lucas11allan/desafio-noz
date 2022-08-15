@@ -31,7 +31,7 @@ class DogBreedsApi: Service {
     private let publicKey = "api_key=20febf79-3164-47bf-a653-40abca91c352"
     
     func fetchImages (
-        page: Int = 1,
+        page: Int = 0,
         order: String,
         completionHandler: @escaping Handler
     ) {
@@ -42,6 +42,7 @@ class DogBreedsApi: Service {
             parameters: params,
             type: Images.self
         ) { response in
+            print(response)
             if let error = response.error {
                 completionHandler(.error(error))
                 return
@@ -87,7 +88,6 @@ class DogBreedsApi: Service {
             parameters: params,
             type: Search.self
         ) { response in
-            print(response)
             if let error = response.error {
                 completionHandler(.error(error))
                 return

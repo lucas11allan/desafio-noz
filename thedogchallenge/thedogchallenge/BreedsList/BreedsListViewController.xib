@@ -20,14 +20,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xhb-XO-vWq">
-                    <rect key="frame" x="20" y="129" width="374" height="733"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xhb-XO-vWq">
+                    <rect key="frame" x="20" y="94" width="374" height="773"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-dK-ddH">
-                    <rect key="frame" x="20" y="90" width="374" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-dK-ddH">
+                    <rect key="frame" x="20" y="54" width="374" height="32"/>
                     <segments>
                         <segment title="Random"/>
                         <segment title="Asc"/>
@@ -37,6 +35,15 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="gM1-PJ-BgH"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="gM1-PJ-BgH" firstAttribute="trailing" secondItem="xhb-XO-vWq" secondAttribute="trailing" constant="20" id="1NF-Hy-w5k"/>
+                <constraint firstItem="xhb-XO-vWq" firstAttribute="top" secondItem="8Zo-dK-ddH" secondAttribute="bottom" constant="9" id="66Y-yW-TeE"/>
+                <constraint firstItem="8Zo-dK-ddH" firstAttribute="top" secondItem="gM1-PJ-BgH" secondAttribute="top" constant="10" id="JFP-nw-lRI"/>
+                <constraint firstItem="8Zo-dK-ddH" firstAttribute="leading" secondItem="gM1-PJ-BgH" secondAttribute="leading" constant="20" id="PdP-6t-xHK"/>
+                <constraint firstItem="xhb-XO-vWq" firstAttribute="leading" secondItem="gM1-PJ-BgH" secondAttribute="leading" constant="20" id="S2S-Gr-dml"/>
+                <constraint firstItem="xhb-XO-vWq" firstAttribute="bottom" secondItem="gM1-PJ-BgH" secondAttribute="bottom" constant="5" id="eqs-O0-S9r"/>
+                <constraint firstItem="gM1-PJ-BgH" firstAttribute="trailing" secondItem="8Zo-dK-ddH" secondAttribute="trailing" constant="20" id="fVo-Ql-ple"/>
+            </constraints>
             <point key="canvasLocation" x="318.84057971014494" y="-42.1875"/>
         </view>
     </objects>
