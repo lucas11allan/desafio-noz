@@ -14,13 +14,13 @@ class BreedsListViewController: UIViewController {
     static let identifier = "BreedsListViewController"
     private let disposeBag = DisposeBag()
     private let order = [0: "RANDOM", 1: "ASC", 2: "DESC"]
-    let viewModel: BreedsListViewModel
+    let viewModel: BreedsListViewModelProtocol
     private var isListView = true
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    init(viewModel: BreedsListViewModel) {
+    init(viewModel: BreedsListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

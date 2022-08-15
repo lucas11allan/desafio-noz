@@ -8,28 +8,34 @@
 import Foundation
 import RxSwift
 
-class BreedsListViewModel: ObservableObject {
-    private let service: DogBreedsApi
+protocol BreedsListViewModelProtocol {
+    var service: ServiceDogProtocol { get }
+    var images: BehaviorSubject<[BreedImage]> { get }
+    var coordinator: AppCoordinator { get }
     
-    var currentPage: Int = 0
+    func getImages(order: String)
+    func openDetails(breed: BreedImage)
+    func goToSearch()
+}
 
-    var hasEnded: Bool = false
-
-    var error: String = ""
+class BreedsListViewModel: BreedsListViewModelProtocol {
+    internal let service: ServiceDogProtocol
     
-    var isLoading: Bool = false
-    
+    private var currentPage: Int = 0
+    private var hasEnded: Bool = false
+    private var error: String = ""
+    private var isLoading: Bool = false
     let images = BehaviorSubject<[BreedImage]>(value: [])
     
     let coordinator: AppCoordinator
     
-    init(service: DogBreedsApi, coordinator: AppCoordinator) {
+    init(service: ServiceDogProtocol, coordinator: AppCoordinator) {
         self.service = service
         self.coordinator = coordinator
     }
     
-    func getImages(_ page: Int = 0, order: String = "RANDOM") {
-        service.fetchImages(page: page, order: order.uppercased()) { [weak self] result in
+    func getImages(order: String = "RANDOM") {
+        service.fetchImages(page: currentPage, order: order.uppercased()) { [weak self] result in
             switch result {
             case .successImage(let data):
                 self?.isLoading = false

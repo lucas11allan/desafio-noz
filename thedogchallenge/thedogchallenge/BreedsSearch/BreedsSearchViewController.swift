@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class BreedsSearchViewController: UIViewController {
-    var viewModel: BreedsSearchViewModel?
+    var viewModel: BreedsSearchViewModelProtocol?
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
