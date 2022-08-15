@@ -39,6 +39,7 @@ class BreedTableViewCell: UITableViewCell {
     
     func downloadImage(url: String) {
         let url = URL(string: url)
+        breedImage.kf.indicatorType = .activity
         breedImage.kf.setImage(with: url)
     }
 }

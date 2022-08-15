@@ -37,6 +37,7 @@ class BreedDetailViewController: UIViewController {
         temperamentLabel.text = breedInfo.temperament
 
         let url = URL(string: breedInfo.imageUrl)
+        dogImageView.kf.indicatorType = .activity
         dogImageView.kf.setImage(with: url)
     }
 }

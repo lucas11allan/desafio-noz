@@ -28,8 +28,8 @@ class BreedsSearchViewModel {
         self.coordinator = coordinator
     }
     
-    func searchBreeds(_ page: Int = 1) {
-        service.fetchSearchBreeds(query: "bull", page: page) { [weak self] result in
+    func searchBreeds(_ page: Int = 1, query: String) {
+        service.fetchSearchBreeds(query: query, page: page) { [weak self] result in
             switch result {
             case .successSearch(let data):
                 self?.isLoading = false
@@ -45,7 +45,8 @@ class BreedsSearchViewModel {
     }
     
     func openDetails(breed: Breed) {
-        service.fetchImage(id: "rVXxoWhCR") { [weak self] result in
+        guard let id = breed.reference_image_id else { return }
+        service.fetchImage(id: id) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.coordinator.openDetails(breed: data)

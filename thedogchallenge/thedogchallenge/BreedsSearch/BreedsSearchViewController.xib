@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BreedsSearchViewController" customModule="thedogchallenge" customModuleProvider="target">
             <connections>
+                <outlet property="searchBar" destination="kiC-ef-oyX" id="hda-3k-m50"/>
                 <outlet property="tableView" destination="nNe-wI-DzP" id="lLb-dY-squ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="0D1-Tg-Px4"/>
             </connections>
