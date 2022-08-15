@@ -32,8 +32,6 @@
 		9B89EFE128A933FF001840A8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 9B89EFE028A933FF001840A8 /* RxCocoa */; };
 		9B89EFE328A933FF001840A8 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 9B89EFE228A933FF001840A8 /* RxRelay */; };
 		9B89EFE528A933FF001840A8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9B89EFE428A933FF001840A8 /* RxSwift */; };
-		9B89EFE828A95B47001840A8 /* BreedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89EFE728A95B47001840A8 /* BreedCollectionViewCell.swift */; };
-		9B89EFEA28A95B7F001840A8 /* BreedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B89EFE928A95B7F001840A8 /* BreedCollectionViewCell.xib */; };
 		9B89EFED28A95E4F001840A8 /* BreedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B89EFEC28A95E4F001840A8 /* BreedTableViewCell.xib */; };
 		9B89EFEF28A95E6A001840A8 /* BreedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89EFEE28A95E6A001840A8 /* BreedTableViewCell.swift */; };
 		9B89EFF228A97E1F001840A8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9B89EFF128A97E1F001840A8 /* Kingfisher */; };
@@ -86,8 +84,6 @@
 		9B8679BF28A69CDF006F3A5C /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		9B8679C928A6AA22006F3A5C /* BreedsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsListViewController.swift; sourceTree = "<group>"; };
 		9B8679CB28A6AA40006F3A5C /* BreedsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreedsListViewController.xib; sourceTree = "<group>"; };
-		9B89EFE728A95B47001840A8 /* BreedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedCollectionViewCell.swift; sourceTree = "<group>"; };
-		9B89EFE928A95B7F001840A8 /* BreedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreedCollectionViewCell.xib; sourceTree = "<group>"; };
 		9B89EFEC28A95E4F001840A8 /* BreedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreedTableViewCell.xib; sourceTree = "<group>"; };
 		9B89EFEE28A95E6A001840A8 /* BreedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedTableViewCell.swift; sourceTree = "<group>"; };
 		9B89EFF728A990C2001840A8 /* BreedDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreedDetailViewController.xib; sourceTree = "<group>"; };
@@ -244,8 +240,6 @@
 		9B89EFE628A95B13001840A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				9B89EFE728A95B47001840A8 /* BreedCollectionViewCell.swift */,
-				9B89EFE928A95B7F001840A8 /* BreedCollectionViewCell.xib */,
 				9B89EFEC28A95E4F001840A8 /* BreedTableViewCell.xib */,
 				9B89EFEE28A95E6A001840A8 /* BreedTableViewCell.swift */,
 			);
@@ -378,7 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B483EE928A576020088EC9D /* LaunchScreen.storyboard in Resources */,
-				9B89EFEA28A95B7F001840A8 /* BreedCollectionViewCell.xib in Resources */,
 				9B89EFF828A990C2001840A8 /* BreedDetailViewController.xib in Resources */,
 				9B89EFED28A95E4F001840A8 /* BreedTableViewCell.xib in Resources */,
 				9B483EE628A576020088EC9D /* Assets.xcassets in Resources */,
@@ -411,7 +404,6 @@
 			files = (
 				9B89F00128A9C250001840A8 /* BreedTableCell.swift in Sources */,
 				9B483F1A28A57A150088EC9D /* BreedDetailViewModel.swift in Sources */,
-				9B89EFE828A95B47001840A8 /* BreedCollectionViewCell.swift in Sources */,
 				9B483F2228A5A0700088EC9D /* BreedsSearchModel.swift in Sources */,
 				9B483F2428A5A0820088EC9D /* BreedsSearchViewController.swift in Sources */,
 				9B483EDA28A576010088EC9D /* AppDelegate.swift in Sources */,

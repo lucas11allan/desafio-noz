@@ -42,7 +42,6 @@ class DogBreedsApi: Service {
             parameters: params,
             type: Images.self
         ) { response in
-            print(response)
             if let error = response.error {
                 completionHandler(.error(error))
                 return

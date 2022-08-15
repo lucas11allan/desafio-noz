@@ -35,6 +35,7 @@ class BreedDetailViewController: UIViewController {
         categoryLabel.text = breedInfo.category
         orignLabel.text = breedInfo.origin
         temperamentLabel.text = breedInfo.temperament
+        temperamentLabel.sizeToFit()
 
         let url = URL(string: breedInfo.imageUrl)
         dogImageView.kf.indicatorType = .activity
