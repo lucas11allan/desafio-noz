@@ -10,12 +10,17 @@ import Foundation
 class BreedDetailViewModel {
     private let service: DogBreedsApi
     private let coordinator: AppCoordinator
-    var breed: BreedImage
+    var breedDetail: DogDetailModel
     
     init(service: DogBreedsApi, coordinator: AppCoordinator, breed: BreedImage) {
         self.service = service
         self.coordinator = coordinator
-        self.breed = breed
+        self.breedDetail = DogDetailModel(breed: breed)
     }
     
+    init(service: DogBreedsApi, coordinator: AppCoordinator, breed: Breed, url: String) {
+        self.service = service
+        self.coordinator = coordinator
+        self.breedDetail = DogDetailModel(breed: breed, imageUrl: url)
+    }
 }

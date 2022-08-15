@@ -34,6 +34,14 @@ class AppCoordinator: BaseCoordinator {
         self.navigationController.pushViewController(detailViewController, animated: true)
     }
     
+    func openDetailsScreen(breed: Breed, url: String) {
+        let viewModel = BreedDetailViewModel(service: dogService, coordinator: self, breed: breed, url: url)
+        let detailViewController = BreedDetailViewController()
+        detailViewController.viewModel = viewModel
+        
+        self.navigationController.pushViewController(detailViewController, animated: true)
+    }
+    
     func openSearchScreen() {
         let viewModel = BreedsSearchViewModel(service: dogService, coordinator: self)
         let searchViewController = BreedsSearchViewController()

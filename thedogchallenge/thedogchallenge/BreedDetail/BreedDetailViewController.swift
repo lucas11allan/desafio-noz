@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class BreedDetailViewController: UIViewController {
     static let identifier = "BreedDetailViewController"
@@ -28,15 +29,14 @@ class BreedDetailViewController: UIViewController {
         setData(viewModel)
     }
     
-    private func setData(_ viewMoel: BreedDetailViewModel) {
-        guard let breedInfo = viewMoel.breed.breeds?[0] else { return }
+    private func setData(_ viewModel: BreedDetailViewModel) {
+        let breedInfo = viewModel.breedDetail
         nameLabel.text = breedInfo.name
-        categoryLabel.text = breedInfo.breed_group
-        orignLabel.text = breedInfo.breed_for
+        categoryLabel.text = breedInfo.category
+        orignLabel.text = breedInfo.origin
         temperamentLabel.text = breedInfo.temperament
-        
-        guard let urlString = viewMoel.breed.url else { return }
-        let url = URL(string: urlString)
+
+        let url = URL(string: breedInfo.imageUrl)
         dogImageView.kf.setImage(with: url)
     }
 }

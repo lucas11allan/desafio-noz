@@ -44,7 +44,7 @@ class BreedsSearchViewModel {
         }
     }
     
-    func openDetails(breed: BreedImage) {
-        coordinator.openDetails(breed: breed)
+    func openDetails(breed: Breed) {
+        //coordinator.openDetails(breed: breed)
     }
 }
