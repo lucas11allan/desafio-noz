@@ -28,8 +28,8 @@ class BreedsListViewModel: ObservableObject {
         self.coordinator = coordinator
     }
     
-    func getImages(_ page: Int = 1) {
-        service.fetchImages(page: page) { [weak self] result in
+    func getImages(_ page: Int = 1, order: String = "RANDOM") {
+        service.fetchImages(page: page, order: order.uppercased()) { [weak self] result in
             switch result {
             case .successImage(let data):
                 self?.isLoading = false

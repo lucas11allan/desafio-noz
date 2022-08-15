@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BreedsListViewController" customModule="thedogchallenge" customModuleProvider="target">
             <connections>
+                <outlet property="segmentedControl" destination="8Zo-dK-ddH" id="uAj-0N-9Vb"/>
                 <outlet property="tableView" destination="xhb-XO-vWq" id="9z8-Fh-qRq"/>
                 <outlet property="view" destination="0Pu-yp-C53" id="sjf-LK-Qiw"/>
             </connections>
@@ -24,6 +25,15 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-dK-ddH">
+                    <rect key="frame" x="20" y="90" width="374" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Random"/>
+                        <segment title="Asc"/>
+                        <segment title="Desc"/>
+                    </segments>
+                </segmentedControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="gM1-PJ-BgH"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>

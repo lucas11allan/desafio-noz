@@ -13,11 +13,11 @@ import RxCocoa
 class BreedsListViewController: UIViewController {
     static let identifier = "BreedsListViewController"
     private let disposeBag = DisposeBag()
-    
+    private let order = [0: "RANDOM", 1: "ASC", 2: "DESC"]
     let viewModel: BreedsListViewModel
-    
     private var isListView = true
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     init(viewModel: BreedsListViewModel) {
@@ -32,9 +32,14 @@ class BreedsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.getImages()
         setupNavigationBar()
         setUpTableView()
+        
+        segmentedControl.rx.selectedSegmentIndex.subscribe (onNext: { param in
+            guard let order = self.order[param] else { return }
+            self.viewModel.getImages(order: order)
+        })
+        .disposed(by: disposeBag)
     }
     
     func setupNavigationBar() {

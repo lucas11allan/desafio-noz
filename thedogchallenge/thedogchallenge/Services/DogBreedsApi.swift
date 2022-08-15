@@ -22,20 +22,20 @@ protocol Service {
     typealias Search = [Breed]
     typealias Handler = (ServiceReturn) -> Void
 
-    func fetchImages(page: Int, completionHandler: @escaping Handler)
+    func fetchImages(page: Int, order: String, completionHandler: @escaping Handler)
 }
 
 class DogBreedsApi: Service {
     private let limit = 20
     private let baseUrl = "https://api.thedogapi.com/v1"
     private let publicKey = "api_key=20febf79-3164-47bf-a653-40abca91c352"
-    private let jsonDecoder: JSONDecoder  = JSONDecoder()
     
     func fetchImages (
         page: Int = 1,
+        order: String,
         completionHandler: @escaping Handler
     ) {
-        let params = ["page": page, "limit": 20] as [String : Any]
+        let params = ["page": page, "limit": 20, "order": order] as [String : Any]
 
         fetchApi(
             endpoint: "/images/search",
@@ -87,6 +87,7 @@ class DogBreedsApi: Service {
             parameters: params,
             type: Search.self
         ) { response in
+            print(response)
             if let error = response.error {
                 completionHandler(.error(error))
                 return
