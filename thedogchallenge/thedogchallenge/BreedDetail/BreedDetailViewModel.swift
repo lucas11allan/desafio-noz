@@ -17,10 +17,4 @@ class BreedDetailViewModel {
         self.coordinator = coordinator
         self.breedDetail = DogDetailModel(breed: breed)
     }
-    
-    init(service: DogBreedsApi, coordinator: AppCoordinator, breed: Breed, url: String) {
-        self.service = service
-        self.coordinator = coordinator
-        self.breedDetail = DogDetailModel(breed: breed, imageUrl: url)
-    }
 }

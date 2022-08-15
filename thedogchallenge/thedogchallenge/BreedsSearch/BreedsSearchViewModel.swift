@@ -45,6 +45,17 @@ class BreedsSearchViewModel {
     }
     
     func openDetails(breed: Breed) {
-        //coordinator.openDetails(breed: breed)
+        service.fetchImage(id: "rVXxoWhCR") { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.coordinator.openDetails(breed: data)
+            case .error(let erro):
+                self?.error = erro.localizedDescription
+                debugPrint("Um erro aconteceu: \(String(describing: self?.error))")
+            default:
+                self?.error = "No content"
+                debugPrint("Um erro aconteceu: \(String(describing: self?.error))")
+            }
+        }
     }
 }

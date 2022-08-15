@@ -22,3 +22,8 @@ struct Breed: Codable {
     let temperament: String?
     let reference_image_id: String?
 }
+
+struct BreedUrl: Codable {
+    let id: String?
+    let url: String?
+}

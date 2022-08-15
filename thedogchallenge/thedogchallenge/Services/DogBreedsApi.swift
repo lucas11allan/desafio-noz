@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 enum ServiceReturn {
+    case success(Service.Image)
     case successImage(Service.Images)
     case successSearch(Service.Search)
     case noContent
@@ -16,6 +17,7 @@ enum ServiceReturn {
 }
 
 protocol Service {
+    typealias Image = BreedImage
     typealias Images = [BreedImage]
     typealias Search = [Breed]
     typealias Handler = (ServiceReturn) -> Void
@@ -33,7 +35,7 @@ class DogBreedsApi: Service {
         page: Int = 1,
         completionHandler: @escaping Handler
     ) {
-        let params = ["page": page] as [String : Any]
+        let params = ["page": page, "limit": 20] as [String : Any]
 
         fetchApi(
             endpoint: "/images/search",
@@ -51,6 +53,25 @@ class DogBreedsApi: Service {
             }
 
             completionHandler(.successImage(data))
+        }
+    }
+    
+    func fetchImage (id: String, completionHandler: @escaping Handler) {
+        fetchApi(
+            endpoint: "/images/\(id)",
+            type: Image.self
+        ) { response in
+            if let error = response.error {
+                completionHandler(.error(error))
+                return
+            }
+
+            guard let data = response.value else {
+                completionHandler(.noContent)
+                return
+            }
+
+            completionHandler(.success(data))
         }
     }
     
@@ -86,9 +107,7 @@ class DogBreedsApi: Service {
         type: T.Type = T.self,
         completionHandler: @escaping (AFDataResponse<T>) -> Void
     ) where T: Decodable {
-        var parameters = parameters
         
-        parameters["limit"] = 20
         let httpHeaders = ["x-api-key": publicKey] as HTTPHeaders
         
         AF.request("\(baseUrl)\(endpoint)", parameters: parameters, headers:  httpHeaders)
